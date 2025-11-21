@@ -1,0 +1,32 @@
+[tools]
+
+[tools."http:arduino-cli"]
+version = "1.3.1"
+
+[tools."http:arduino-cli".platforms]
+linux-x64 = { url = "https://github.com/arduino/arduino-cli/releases/download/v{version}/arduino-cli_{version}_Linux_64bit.tar.gz" }
+
+[tasks."arduino:run"]
+depends = [
+  "arduino:compile",
+  "arduino:upload",
+  "arduino:monitor",
+]
+
+[tasks."arduino:compile"]
+run = """
+#!/usr/bin/env bash
+arduino-cli compile
+"""
+
+[tasks."arduino:upload"]
+run = """
+#!/usr/bin/env bash
+arduino-cli upload
+"""
+
+[tasks."arduino:monitor"]
+run = """
+#!/usr/bin/env bash
+arduino-cli monitor
+"""

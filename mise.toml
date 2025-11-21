@@ -19,6 +19,7 @@ depends = [
 [tasks."setup"]
 run = """
 #!/usr/bin/env bash
+
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
@@ -30,17 +31,20 @@ arduino-cli lib  update-index
 [tasks."arduino:compile"]
 run = """
 #!/usr/bin/env bash
-arduino-cli compile
+
+arduino-cli compile --build-property "compiler.cpp.extra_flags=-DATTINY_PASS_KEY_PASSWORD=\\\"${ATTINY_PASS_KEY_PASSWORD}\\\""
 """
 
 [tasks."arduino:upload"]
 run = """
 #!/usr/bin/env bash
+
 arduino-cli upload
 """
 
 [tasks."arduino:monitor"]
 run = """
 #!/usr/bin/env bash
+
 arduino-cli monitor
 """

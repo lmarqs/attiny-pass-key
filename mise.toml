@@ -1,3 +1,6 @@
+[env]
+_.file = ".env"
+
 [tools]
 
 [tools."http:arduino-cli"]
@@ -16,17 +19,17 @@ depends = [
 [tasks."arduino:compile"]
 run = """
 #!/usr/bin/env bash
-arduino-cli compile
+arduino-cli compile --config-file arduino-cli.yaml
 """
 
 [tasks."arduino:upload"]
 run = """
 #!/usr/bin/env bash
-arduino-cli upload
+arduino-cli upload --config-file arduino-cli.yaml
 """
 
 [tasks."arduino:monitor"]
 run = """
 #!/usr/bin/env bash
-arduino-cli monitor
+arduino-cli monitor --config-file arduino-cli.yaml
 """

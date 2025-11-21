@@ -1,8 +1,10 @@
-default_profile: attiny85
+default_profile: ATTinyCore
 
 profiles:
-  attiny85:
+  ATTinyCore:
     fqbn: ATTinyCore:avr:attinyx5micr
     platforms:
       - platform: ATTinyCore:avr (1.5.2)
         platform_index_url: http://drazzy.com/package_drazzy.com_index.json
+    libraries:
+      - dir: lib/DigiKeyboard

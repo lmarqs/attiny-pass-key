@@ -6,5 +6,7 @@ profiles:
     platforms:
       - platform: ATTinyCore:avr (1.5.2)
         platform_index_url: http://drazzy.com/package_drazzy.com_index.json
+      - platform: digistump:avr (1.7.5)
+        platform_index_url: https://raw.githubusercontent.com/ArminJo/DigistumpArduino/master/package_digistump_index.json
     libraries:
-      - dir: lib/DigiKeyboard
+      - dir: .arduino/data/internal/digistump_avr_1.7.5_9136c25e859f23cd/libraries/DigisparkKeyboard

@@ -1,0 +1,3 @@
+[submodule "libs/DigiKeyboard"]
+	path = libs/DigiKeyboard
+	url = https://github.com/cipherswami/DigiKeyboard.git

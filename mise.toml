@@ -32,7 +32,7 @@ arduino-cli lib  update-index
 run = """
 #!/usr/bin/env bash
 
-arduino-cli compile --build-property "compiler.cpp.extra_flags=-DATTINY_PASS_KEY_PASSWORD=\\\"${ATTINY_PASS_KEY_PASSWORD}\\\""
+arduino-cli compile --build-property "compiler.cpp.extra_flags=-DATTINY_PASS_KEY_PASSWORD=\\"${ATTINY_PASS_KEY_PASSWORD}\\""
 """
 
 [tasks."arduino:upload"]

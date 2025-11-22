@@ -8,11 +8,13 @@ For instance, when you dont have a keyboard connected directly to the device you
 Or maybe you have a passphrase so large and complex that it is a hassle to type it every time.
 
 
-**THIS PROJECT IS MADE FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK**
+**THIS PROJECT IS MADE FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.**
 
 ## Purpose
 
 This project is designed for the ATtiny microcontroller (specifically the Digispark/ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in or triggered. This enables secure access control using a simple, compact hardware setup.
+
+![](./digispark-attiny85.jpg)
 
 ## Features
 - **Automated Password Entry**: Types a pre-configured password via USB HID.

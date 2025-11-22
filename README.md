@@ -1,5 +1,15 @@
 # attiny-pass-key
 
+Type your password effortlessly.
+
+## Context
+Typing your password, sometimes, can be a pain.
+For instance, when you dont have a keyboard connected directly to the device you want to access.
+Or maybe you have a passphrase so large and complex that it is a hassle to type it every time.
+
+
+**THIS PROJECT IS MADE FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK**
+
 ## Purpose
 
 This project is designed for the ATtiny microcontroller (specifically the Digispark/ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in or triggered. This enables secure access control using a simple, compact hardware setup.

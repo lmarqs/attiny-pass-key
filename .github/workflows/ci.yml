@@ -1,0 +1,43 @@
+name: Arduino Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install mise
+        uses: jdx/mise-action@v2
+
+      - name: Setup Arduino environment
+        run: mise run setup
+
+      - name: Compile Arduino sketch
+        run: mise run arduino:compile
+
+      - name: Archive .arduino directory
+        run: tar -czf arduino-build.tar.gz .arduino
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: arduino-build
+          path: .arduino
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: build-${{ github.sha }}
+          name: Build ${{ github.sha }}
+          files: arduino-build.tar.gz
+          draft: false
+          prerelease: false

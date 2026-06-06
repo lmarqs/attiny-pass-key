@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mise install)",
+      "Bash(mise run setup)",
+      "Bash(mise run arduino:compile)"
+    ]
+  }
+}

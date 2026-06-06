@@ -4,7 +4,7 @@ Type your password effortlessly.
 
 ## Context
 Typing your password, sometimes, can be a pain.
-For instance, when you dont have a keyboard connected directly to the device you want to access.
+For instance, when you don't have a keyboard connected directly to the device you want to access.
 Or maybe you have a passphrase so large and complex that it is a hassle to type it every time.
 
 
@@ -12,9 +12,13 @@ Or maybe you have a passphrase so large and complex that it is a hassle to type 
 
 ## Purpose
 
-This project is designed for the ATtiny microcontroller (specifically the Digispark/ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in or triggered. This enables secure access control using a simple, compact hardware setup.
+This project is designed for the ATtiny microcontroller (specifically the Digispark/ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in. This makes entering long passphrases effortless on machines where typing them is impractical — a convenience tool, not a security one.
 
-![](./digispark-attiny85.jpg)
+![Digispark ATtiny85 board](./digispark-attiny85.jpg)
+
+## How It Works
+
+Once plugged in, the device waits about a second, types the configured password followed by Enter into whatever window currently has focus, then blinks the on-board LED indefinitely.
 
 ## Features
 - **Automated Password Entry**: Types a pre-configured password via USB HID.
@@ -25,7 +29,7 @@ This project is designed for the ATtiny microcontroller (specifically the Digisp
 - [Arduino CLI](https://arduino.github.io/arduino-cli/latest/): For building and uploading firmware.
 - [mise](https://mise.jdx.dev/): For task management and tool versioning.
 - **ATtiny85 / Digispark**: The target hardware platform.
-- **Standard Arduino Libraries**: `DigiKeyboard` for USB HID functionality.
+- **Digistump's `DigiKeyboard` library**: USB HID functionality (vendored from the Digistump platform, referenced by path in `sketch.yaml`).
 
 ## Getting Started
 
@@ -37,7 +41,7 @@ This project is designed for the ATtiny microcontroller (specifically the Digisp
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/lmarqs/attiny-pass-key.git
    cd attiny-pass-key
    ```
 
@@ -78,11 +82,17 @@ This project uses `mise` tasks to simplify the build process.
    ```
    Connect your Digispark/ATtiny85 when prompted (or within the 60-second timeout window typical for Micronucleus bootloaders).
 
-3. **Monitor (Optional):**
-   To view serial output (if enabled/supported):
+3. **All-in-one (Optional):**
    ```bash
-   mise run arduino:monitor
+   mise run arduino:run
    ```
+   Runs compile + upload + monitor in sequence.
+
+> **Note:** With `DigiKeyboard`, the Digispark enumerates as an HID-only device (V-USB provides no CDC serial), so `mise run arduino:monitor` will typically find no serial port — this sketch produces no serial output.
+
+## Releases
+
+Every push to `main` triggers a CI build that publishes a `build-<sha>` GitHub release with the build output. **Release artifacts are compiled without a `.env`, so the firmware contains the `default_password` fallback** — to embed your own password, build locally as described above.
 
 ## Project Structure
 
@@ -91,3 +101,4 @@ This project uses `mise` tasks to simplify the build process.
 - `arduino-cli.yaml`: Configuration file for `arduino-cli`.
 - `sketch.yaml`: Defines the board profile (FQBN) and platform dependencies.
 - `.env`: Stores sensitive configuration like the password (do not commit this file).
+- `.arduino/`: Local sandboxed Arduino environment (platforms, tools, build output — gitignored), created by the setup and compile tasks.

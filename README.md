@@ -1,29 +1,44 @@
-# attiny-pass-key
+# attiny-pass-key — USB Password Typer for Digispark / ATtiny85
 
-Type your password effortlessly.
+> Open-source ATtiny85 firmware that turns a Digispark into a USB HID keyboard that automatically types a pre-configured password when plugged in.
 
-## Context
-Typing your password, sometimes, can be a pain.
-For instance, when you don't have a keyboard connected directly to the device you want to access.
-Or maybe you have a passphrase so large and complex that it is a hassle to type it every time.
+**attiny-pass-key** is a tiny, single-sketch Arduino firmware for the Digispark / ATtiny85 microcontroller. It emulates a USB keyboard (USB HID) and types a password for you the moment the board is plugged into any computer — no drivers, no software, no manual typing. Think of it as a DIY USB password dongle or auto-typer built on cheap, widely available hardware.
 
+## Table of Contents
 
-**THIS PROJECT IS MADE FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.**
+- [Why use attiny-pass-key?](#why-use-attiny-pass-key)
+- [Purpose](#purpose)
+- [How It Works](#how-it-works)
+- [Features](#features)
+- [Tools Used](#tools-used)
+- [Getting Started](#getting-started)
+- [Build and Upload](#build-and-upload)
+- [Releases](#releases)
+- [Project Structure](#project-structure)
+- [Keywords](#keywords)
+
+## Why use attiny-pass-key?
+
+Typing a password by hand can be a pain — especially when you don't have a keyboard connected directly to the device you want to access, or when you use a passphrase so long and complex that retyping it every time is a hassle. attiny-pass-key solves this by typing the password for you over USB.
+
+**⚠️ THIS PROJECT IS MADE FOR EDUCATIONAL PURPOSES ONLY. USE AT YOUR OWN RISK.**
 
 ## Purpose
 
-This project is designed for the ATtiny microcontroller (specifically the Digispark/ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in. This makes entering long passphrases effortless on machines where typing them is impractical — a convenience tool, not a security one.
+This project is designed for the ATtiny microcontroller (specifically the Digispark / ATtiny85) to implement a passkey system. It acts as a USB keyboard device that automatically types a configured password when plugged in. This makes entering long passphrases effortless on machines where typing them is impractical — a convenience tool, not a security one.
 
-![Digispark ATtiny85 board](./digispark-attiny85.jpg)
+![Digispark ATtiny85 USB development board used to run the attiny-pass-key password-typer firmware](./digispark-attiny85.jpg)
 
 ## How It Works
 
 Once plugged in, the device waits about a second, types the configured password followed by Enter into whatever window currently has focus, then blinks the on-board LED indefinitely.
 
 ## Features
-- **Automated Password Entry**: Types a pre-configured password via USB HID.
-- **Compact Codebase**: Optimized for ATtiny microcontrollers.
-- **Configurable**: Password can be set via environment variables.
+- **Automated Password Entry**: Types a pre-configured password via USB HID the moment the board is plugged in.
+- **Plug-and-Play USB Keyboard**: Enumerates as a standard USB HID keyboard — works on Windows, macOS, and Linux with no extra drivers or software.
+- **Compact Codebase**: A single Arduino sketch optimized for the resource-constrained ATtiny85 microcontroller.
+- **Configurable Password**: Set your password via an environment variable, injected into the firmware at compile time.
+- **Cheap, Accessible Hardware**: Runs on the low-cost Digispark / ATtiny85 board.
 
 ## Tools Used
 - [Arduino CLI](https://arduino.github.io/arduino-cli/latest/): For building and uploading firmware.
@@ -102,3 +117,7 @@ Every push to `main` triggers a CI build that publishes a `build-<sha>` GitHub r
 - `sketch.yaml`: Defines the board profile (FQBN) and platform dependencies.
 - `.env`: Stores sensitive configuration like the password (do not commit this file).
 - `.arduino/`: Local sandboxed Arduino environment (platforms, tools, build output — gitignored), created by the setup and compile tasks.
+
+## Keywords
+
+ATtiny85, Digispark, USB HID keyboard, password typer, auto-type password, USB password dongle, Arduino firmware, ATtiny microcontroller, micronucleus bootloader, DigiKeyboard, arduino-cli, mise, embedded firmware, HID emulation, USB rubber ducky alternative, keystroke injection, AVR.

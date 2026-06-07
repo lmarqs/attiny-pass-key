@@ -40,53 +40,53 @@ Once plugged in, the device waits about a second, types the configured password 
 ### Setup
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/lmarqs/attiny-pass-key.git
-   cd attiny-pass-key
-   ```
+```bash
+git clone https://github.com/lmarqs/attiny-pass-key.git
+cd attiny-pass-key
+```
 
 2. **Install Tools:**
-   Run `mise install` to download the required version of `arduino-cli` and other tools defined in `mise.toml`.
-   ```bash
-   mise install
-   ```
+Run `mise install` to download the required version of `arduino-cli` and other tools defined in `mise.toml`.
+```bash
+mise install
+```
 
 3. **Initialize Environment:**
-   Run the setup task to configure the Arduino core and libraries.
-   ```bash
-   mise run setup
-   ```
-   This command will:
-   - Create a `.env` file from `.env.example` if it doesn't exist.
-   - Update the Arduino core and library indexes.
+Run the setup task to configure the Arduino core and libraries.
+```bash
+mise run setup
+```
+This command will:
+- Create a `.env` file from `.env.example` if it doesn't exist.
+- Update the Arduino core and library indexes.
 
 4. **Configure Password:**
-   Open the `.env` file and set your desired password in the `ATTINY_PASS_KEY_PASSWORD` variable.
-   ```bash
-   ATTINY_PASS_KEY_PASSWORD="your_secure_password_here"
-   ```
+Open the `.env` file and set your desired password in the `ATTINY_PASS_KEY_PASSWORD` variable.
+```bash
+ATTINY_PASS_KEY_PASSWORD="your_secure_password_here"
+```
 
 ### Build and Upload
 
 This project uses `mise` tasks to simplify the build process.
 
 1. **Compile the Firmware:**
-   ```bash
-   mise run arduino:compile
-   ```
-   This compiles the sketch and injects the password from your `.env` file.
+```bash
+mise run arduino:compile
+```
+This compiles the sketch and injects the password from your `.env` file.
 
 2. **Upload to Device:**
-   ```bash
-   mise run arduino:upload
-   ```
-   Connect your Digispark/ATtiny85 when prompted (or within the 60-second timeout window typical for Micronucleus bootloaders).
+```bash
+mise run arduino:upload
+```
+Connect your Digispark/ATtiny85 when prompted (or within the 60-second timeout window typical for Micronucleus bootloaders).
 
 3. **All-in-one (Optional):**
-   ```bash
-   mise run arduino:run
-   ```
-   Runs compile + upload + monitor in sequence.
+```bash
+mise run arduino:run
+```
+Runs compile + upload + monitor in sequence.
 
 > **Note:** With `DigiKeyboard`, the Digispark enumerates as an HID-only device (V-USB provides no CDC serial), so `mise run arduino:monitor` will typically find no serial port — this sketch produces no serial output.
 
